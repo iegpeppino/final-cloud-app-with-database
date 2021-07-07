@@ -3,11 +3,16 @@ from django.contrib import admin
 from .models import Choice, Course, Lesson, Instructor, Learner, Question
 
 # <HINT> Register QuestionInline and ChoiceInline classes here
-class QuestionInline(admin.StackedInline):
-    model = Question
+# Created QuestionAdmin instead of inline so we can add the choices 
+# directly into the question and not relating them through keys 
 
-class Choiceinline(admin.StackedInline):
+class QuestionAdmin(admin.ModelAdmin):
+    inline = [ChoiceInLine]
+    field = ('q_text', 'grade', 'lesson_id')
+
+class ChoiceInLine(admin.StackedInline):
     model = Choice
+    extra = 5
 
 class LessonInline(admin.StackedInline):
     model = Lesson
@@ -32,5 +37,5 @@ admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(Instructor)
 admin.site.register(Learner)
-admin.site.register(Question)
+admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice)

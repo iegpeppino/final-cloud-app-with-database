@@ -153,6 +153,7 @@ def show_exam_result(request, course_id, submission_id):
     chosen = Submission.objects.filter(id = submission_id).values_list('choices', flat = True)
 # For each selected choice, check if it is a correct answer or not
 # Calculate the total score
+# Presented extra information in the form of context
     t_score = 0
     for i in submit.choices.all().filter(is_correct = True).values_list('question_id'):
         score += Question.objects.filter(id = i[0]).first().grade
