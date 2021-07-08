@@ -147,7 +147,7 @@ def show_exam_result(request, course_id, submission_id):
     context = {}
 # Get course and submission based on their ids    
     course = Course.objects.get(id = course_id)
-    submission = Submission.objects.get(id = submission_id)
+    submit = Submission.objects.get(id = submission_id)
 # Get the selected choice ids from the submission record
 # used 'flat = True' to return a single value from the collection
     chosen = Submission.objects.filter(id = submission_id).values_list('choices', flat = True)
