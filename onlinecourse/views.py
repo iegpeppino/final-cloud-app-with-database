@@ -115,7 +115,7 @@ def submit(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     enrolled = Enrollment.objects.filter(user = user, course = course).get()
 # Create a submission object referring to the enrollment
-    submission = Submission.objects.create(enrollmente_id = enrolled.id)
+    submission = Submission.objects.create(enrollment_id = enrolled.id)
 # Collect the selected choices from exam form
 # Add each selected choice object to the submission object
 # Redirect to show_exam_result with the submission id    
