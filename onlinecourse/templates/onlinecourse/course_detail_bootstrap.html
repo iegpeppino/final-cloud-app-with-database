@@ -53,8 +53,7 @@
             <!-- Task: show questions and choices -->
             <!-- <HINT> Use Bootstrap Collapse to hide exam first, more details could be found here
             https://www.w3schools.com/bootstrap4/bootstrap_collapse.asp-->
-           
-
+    
             <!-- <HINT> If user is authenticated, show course exam with a list of question -->
             <!-- <HINT> Each example will have many questions -->
             <!-- <HINT> Each question will have many choices -->
@@ -62,11 +61,10 @@
             <!-- <HINT> For each question choice, you may create a checkbox input like
             <input type="check" name="choice_{{choice.id}}" id="{{choice.id}}" ...>
             -->
-           
-
-           
+        
             <button data-toggle='collapse' data-target='exam'>Show Exam</button>
             <div id="exam" class="collapse">
+            <!-- If the user is already logged in -->                
                 {% if user.is_authenticated %}
                <form id="questionform" action="point to a submit view" method="post">
                         {% for question in course.question_set.all %}
@@ -87,7 +85,33 @@
                         </div>
                         {% endfor %}
                     <input class="btn btn-success btn-block" type="submit" value="Submit">
+                </form>
+            <!-- If the user hasn't logged in already -->
+                {% else %}
+                <br>
+                <h5>You need to log in before you can access the class !</h5>
+                <br>
+                <form class = "form-horizontal" action ="{% url 'onlinecourse:login' %}" method = 'post'>
+                    {% csrf_token %}
+                    <div class = 'form-group'>
+                        <label for = 'username' class = 'col-sm-2 control-label'> Username </label>
+                        <div class = 'col-sm-4'>
+                            <input type = 'text' class = 'form-control' placeholder = 'Username' name = 'username'>
+                        </div>
+                    <div class = 'form-group'>    
+                        <label for = 'password' class = 'col-sm-2 control-label'> Password </label>
+                        <div class = 'col-sm-4'>
+                            <input type = 'password' class = 'form-control' placeholder = 'Password' name = 'psw'>
+                        </div>
+                    </div>    
+                        <div class = 'col-sm-4'>
+                            <button class = 'btn btn-primary' type = 'submit'> LogIn </button>
+                        </div>
+                        <br>
+                        <a class = 'btn btn-link' href = "{% url 'onlinecourse:registration' %}"> Sign Up </a>
+                    </div>
                 </form> 
+                {% endif %}
             </div>       
     </div>
 </body>

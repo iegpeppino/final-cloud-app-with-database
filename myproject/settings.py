@@ -56,7 +56,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['iegpeppino.mybluemix.net', 'localhost'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
