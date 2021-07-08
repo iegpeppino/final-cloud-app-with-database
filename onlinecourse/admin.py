@@ -6,9 +6,7 @@ from .models import Choice, Course, Lesson, Instructor, Learner, Question
 # Created QuestionAdmin instead of inline so we can add the choices 
 # directly into the question and not relating them through keys 
 
-class QuestionAdmin(admin.ModelAdmin):
-    inline = [ChoiceInLine]
-    field = ('q_text', 'grade', 'lesson_id')
+
 
 class ChoiceInLine(admin.StackedInline):
     model = Choice
@@ -18,6 +16,9 @@ class LessonInline(admin.StackedInline):
     model = Lesson
     extra = 5
 
+class QuestionAdmin(admin.ModelAdmin):
+    inline = [ChoiceInLine]
+    field = ('q_text', 'grade', 'lesson_id')
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
