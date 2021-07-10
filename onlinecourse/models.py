@@ -119,7 +119,6 @@ class Question(models.Model):
             return True
         else:
             return False
-
     def __str__(self):
         return self.q_text        
 
@@ -134,7 +133,6 @@ class Choice(models.Model):
     c_text = models.TextField()
 # Indicate if this choice of the question is a correct one or not    
     is_correct = models.BooleanField()
-
     def __str__(self):
         return self.c_text
 

@@ -50,7 +50,8 @@
         <div class="card-columns-vertical mt-1">
         <h5 class="">Exam results</h5>
             <!--HINT Display exam results-->
-            {% for question in course.question_set.all%}
+            {% for lesson in course.lesson_set.all%}
+            {% for question in lesson.question_set.all%}
             <div class = 'card-mt1'>
                 <div class = 'card-header'>
                     <h5 style="font-weight:bold">{{question.q_text}}</h5>
@@ -71,6 +72,7 @@
                     {% endfor %}
                 </div>
             </div>
+            {% endfor %}
             {% endfor %}
         </div>
     </div>
