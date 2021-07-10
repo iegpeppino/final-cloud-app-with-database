@@ -128,7 +128,7 @@ class Question(models.Model):
     
 class Choice(models.Model):
 # One-To-Many (or Many-To-Many if you want to reuse choices) relationship with Question
-    question = models.ManyToManyField(Question)
+    question_id = models.ForeignKey(Question, on_delete = models.Cascade)
 # Choice content
     c_text = models.TextField()
 # Indicate if this choice of the question is a correct one or not    
